@@ -17,6 +17,13 @@ public class SiteToBillTest {
 		
 		assertEquals( "10.18", new Bill( serverResponse ).toPay() );
 	}
+	
+	@Test
+	public void singleFileParsedTriangulate() throws IOException {
+		String serverResponse = loadFile( "SampleResponseAnotherPayment.html" );
+		
+		assertEquals( "988.17", new Bill( serverResponse ).toPay() );
+	}
 
 	private String loadFile( String path ) throws IOException {
 		return 
