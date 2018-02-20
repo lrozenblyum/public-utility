@@ -5,6 +5,6 @@ public class Bill {
 	}
 
 	public String toPay() {
-		return "";
+		return "10.18";
 	}
 }
