@@ -24,5 +24,12 @@
 			<artifactId>cactoos</artifactId>
 			<version>0.29</version>
 		</dependency>
+		
+	  <!-- jsoup HTML parser library @ https://jsoup.org/ -->
+		<dependency>
+		  <groupId>org.jsoup</groupId>
+		  <artifactId>jsoup</artifactId>
+		  <version>1.11.2</version>
+		</dependency>
 	</dependencies>
 </project>
