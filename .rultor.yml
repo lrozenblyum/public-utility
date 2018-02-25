@@ -1,2 +1,6 @@
 architect:
 - lrozenblyum
+
+# install should include running qulice
+merge:
+  script: mvn clean install
