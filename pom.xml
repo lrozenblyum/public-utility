@@ -8,4 +8,24 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.qulice</groupId>
+				<artifactId>qulice-maven-plugin</artifactId>
+				<version>0.17</version>
+				<configuration>
+					<license>file:${basedir}/LICENSE</license>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+</build>
 </project>
