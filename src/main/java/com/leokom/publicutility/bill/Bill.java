@@ -4,6 +4,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+/**
+ * Bill for public utility services 
+ * @author Leonid
+ *
+ */
 public class Bill {
 	private final String serverResponse;
 
