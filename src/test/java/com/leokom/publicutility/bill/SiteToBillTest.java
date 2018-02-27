@@ -8,8 +8,6 @@ import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
 import org.junit.Test;
 
-import com.leokom.publicutility.bill.Bill;
-
 public class SiteToBillTest {
 	@Test
 	public void singleFieldParsed() throws IOException {
