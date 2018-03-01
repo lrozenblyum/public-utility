@@ -7,10 +7,10 @@ import org.jsoup.nodes.Element;
 /**
  * Bill for <a href="http://erc.chv.ua/">Chernivtsi municipal info center</a>
  * 
- * @author Leonid
+ * @author Leonid Rozenblium (lrozenblyum@gmail.com)
  *
  */
-public final class ErcBill {
+public final class ErcBill implements Bill {
     private final String content;
 
     /**
@@ -22,11 +22,10 @@ public final class ErcBill {
         this.content = content;
     }
 
-    /**
-     * Tell how many we need to pay for the service.
-     * 
-     * @return Amount of money to pay
+    /* (non-Javadoc)
+     * @see com.leokom.publicutility.bill.Bill#toPay()
      */
+    @Override
     public String toPay() {
         // technically jsoup can also send a request to the server
         final Document response = Jsoup.parse(content);
