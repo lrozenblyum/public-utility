@@ -3,7 +3,7 @@ package com.leokom.publicutility.bill;
 /**
  * Bill for public utility service.
  * @author Leonid Rozenblium (lrozenblyum@gmail.com)
- *
+ * @since 0.0.1
  */
 public interface Bill {
 
