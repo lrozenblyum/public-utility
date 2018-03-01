@@ -5,30 +5,40 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 /**
- * Bill for public utility services 
+ * Bill for public utility services
+ * 
  * @author Leonid
  *
  */
-public class Bill {
-	private final String serverResponse;
+public final class Bill {
+    private final String serverResponse;
 
-	public Bill( String serverResponse ) {
-		this.serverResponse = serverResponse;
-	}
+    /**
+     * Create a bill based on server response containing needed information
+     * 
+     * @param serverResponse
+     *            response from a public utility service
+     */
+    public Bill(String serverResponse) {
+        this.serverResponse = serverResponse;
+    }
 
-	public String toPay() {
-		//technically jsoup can also send a request to the server
-		Document response = Jsoup.parse( serverResponse );
+    /**
+     * How many we need to pay for the service
+     * 
+     * @return amount of money to pay
+     */
+    public String toPay() {
+        // technically jsoup can also send a request to the server
+        final Document response = Jsoup.parse(serverResponse);
 
-		return 
-			response
-			.getElementsContainingText("Сума до оплати")
-			.stream()
-			//searching for the next TD after "Сума до оплати"
-			.filter(element -> element.is("TD"))
-			.map(Element::nextElementSibling)
-			.map(Element::text)
-			.findFirst()
-			.orElseThrow(() -> new IllegalArgumentException(" Failed to find what to pay from " + serverResponse));
-	}
+        return 
+                response.getElementsContainingText("Сума до оплати").
+                stream()
+                // searching for the next TD after "Сума до оплати"
+                .filter(element -> element.is("TD")).map(Element::nextElementSibling)
+                .map(Element::text)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(" Failed to find what to pay from " + serverResponse));
+    }
 }
