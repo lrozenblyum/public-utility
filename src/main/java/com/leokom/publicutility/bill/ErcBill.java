@@ -5,22 +5,21 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 /**
- * Bill for public utility services.
+ * Bill for <a href="http://erc.chv.ua/">Chernivtsi municipal info center</a>
  * 
  * @author Leonid
  *
  */
-public final class Bill {
-    private final String serverResponse;
+public final class ErcBill {
+    private final String content;
 
     /**
      * Create a bill based on server response containing needed information.
      * 
-     * @param serverResponse
-     *            response from a public utility service
+     * @param content html content from the web site
      */
-    public Bill(String serverResponse) {
-        this.serverResponse = serverResponse;
+    public ErcBill(String content) {
+        this.content = content;
     }
 
     /**
@@ -30,7 +29,7 @@ public final class Bill {
      */
     public String toPay() {
         // technically jsoup can also send a request to the server
-        final Document response = Jsoup.parse(serverResponse);
+        final Document response = Jsoup.parse(content);
 
         return 
                 response.getElementsContainingText("Сума до оплати").
@@ -40,7 +39,7 @@ public final class Bill {
                 .map(Element::text)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(
-                    String.format(" Failed to find what to pay from %s", serverResponse)
+                    String.format(" Failed to find what to pay from %s", content)
                  ));
     }
 }

@@ -8,19 +8,19 @@ import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
 import org.junit.Test;
 
-public class SiteToBillTest {
+public class ErcBillTest {
     @Test
     public void singleFieldParsed() throws IOException {
         String serverResponse = this.loadFile("SampleResponse.html");
 
-        assertEquals("10.18", new Bill(serverResponse).toPay());
+        assertEquals("10.18", new ErcBill(serverResponse).toPay());
     }
 
     @Test
     public void singleFileParsedTriangulate() throws IOException {
         String serverResponse = this.loadFile("SampleResponseAnotherPayment.html");
 
-        assertEquals("988.17", new Bill(serverResponse).toPay());
+        assertEquals("988.17", new ErcBill(serverResponse).toPay());
     }
 
     private String loadFile(String path) throws IOException {
