@@ -39,6 +39,8 @@ public final class Bill {
                 .filter(element -> element.is("TD")).map(Element::nextElementSibling)
                 .map(Element::text)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(" Failed to find what to pay from " + serverResponse));
+                .orElseThrow(() -> new IllegalArgumentException(
+                    String.format(" Failed to find what to pay from %s", serverResponse)
+                 ));
     }
 }
