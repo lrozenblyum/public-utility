@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
  * Bill for <a href="http://erc.chv.ua/">Chernivtsi municipal info center</a>
  * 
  * @author Leonid Rozenblium (lrozenblyum@gmail.com)
+ * @since 0.0.1
  *
  */
 public final class ErcBill implements Bill {
