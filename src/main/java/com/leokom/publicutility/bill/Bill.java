@@ -5,7 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 /**
- * Bill for public utility services
+ * Bill for public utility services.
  * 
  * @author Leonid
  *
@@ -14,7 +14,7 @@ public final class Bill {
     private final String serverResponse;
 
     /**
-     * Create a bill based on server response containing needed information
+     * Create a bill based on server response containing needed information.
      * 
      * @param serverResponse
      *            response from a public utility service
@@ -24,9 +24,9 @@ public final class Bill {
     }
 
     /**
-     * How many we need to pay for the service
+     * Tell how many we need to pay for the service.
      * 
-     * @return amount of money to pay
+     * @return Amount of money to pay
      */
     public String toPay() {
         // technically jsoup can also send a request to the server
