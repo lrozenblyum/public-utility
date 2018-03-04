@@ -43,6 +43,12 @@
 					<!-- The file must be included into every Java class header according to qulice rules
 					Our license allows this template to be short and not the whole license - so still to improve -->
 					<license>file:${basedir}/LICENSE</license>
+					
+					<excludes>
+					   <!-- Mainly to exclude src/test/resources html files that are received from an uncontrolled 3'd party.
+					   Does qulice support src/test/resources exclusion? Unclear -->
+	                   <exclude>checkstyle:.*\.html</exclude>
+                    </excludes>
 				</configuration>
 				<executions>
 					<execution>
