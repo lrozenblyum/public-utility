@@ -1,9 +1,7 @@
 package com.leokom.publicutility.bill;
 
 import static org.junit.Assert.assertEquals;
-
 import java.io.IOException;
-
 import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
 import org.junit.Test;
