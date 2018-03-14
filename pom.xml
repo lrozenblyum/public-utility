@@ -41,8 +41,8 @@
 				<version>0.17</version>
 				<configuration>
 					<!-- The file must be included into every Java class header according to qulice rules
-					Our license allows this template to be short and not the whole license - so still to improve -->
-					<license>file:${basedir}/LICENSE</license>
+					Our license allows this template to be short and not the whole license -->
+					<license>file:${basedir}/LICENSE.txt</license>
 					
 					<excludes>
 					   <!-- Mainly to exclude src/test/resources html files that are received from an uncontrolled 3'd party.
