@@ -34,8 +34,8 @@ public final class ErcBill implements Bill {
 
     /**
      * Create a bill based on server response containing needed information.
-     * 
-     * @param content html content from the web site
+     *
+     * @param content HTML content from the web site
      */
     public ErcBill(String content) {
         this.content = content;
