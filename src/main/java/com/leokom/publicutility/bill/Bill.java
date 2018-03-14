@@ -25,7 +25,7 @@ public interface Bill {
 
     /**
      * Tell how many we need to pay for the service.
-     * 
+     *
      * @return Amount of money to pay
      */
     String toPay();
