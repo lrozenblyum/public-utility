@@ -9,7 +9,7 @@ import org.jsoup.nodes.Element;
  * 
  * @author Leonid Rozenblium (lrozenblyum@gmail.com)
  * @since 0.0.1
- *
+ * @version $Id$
  */
 public final class ErcBill implements Bill {
     private final String content;
