@@ -42,18 +42,24 @@ public final class ErcBill implements Bill {
 
     @Override
     public String toPay() {
-        // technically jsoup can also send a request to the server
-        final Document response = Jsoup.parse(content);
+        final Document response = Jsoup.parse(this.content);
+        return
+            response.getElementsContainingText("Сума до оплати")
+            .stream()
+            .filter(element -> element.is("TD"))
+            .map(Element::nextElementSibling)
+            .map(Element::text)
+            .findFirst()
+            .orElseThrow(this::generateNotFoundException);
+    }
 
-        return 
-                response.getElementsContainingText("Сума до оплати").
-                stream()
-                // searching for the next TD after "Сума до оплати"
-                .filter(element -> element.is("TD")).map(Element::nextElementSibling)
-                .map(Element::text)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(
-                    String.format(" Failed to find what to pay from %s", content)
-                 ));
+    /**
+     * Generate exception in case the desired element not found.
+     * @return Instance of an exception
+     */
+    private IllegalArgumentException generateNotFoundException() {
+        return new IllegalArgumentException(
+            String.format(" Failed to find what to pay from %s", this.content)
+        );
     }
 }
