@@ -34,16 +34,12 @@ public final class ErcBill implements Bill {
 
     /**
      * Create a bill based on server response containing needed information.
-     *
      * @param content HTML content from the web site
      */
-    public ErcBill(String content) {
+    public ErcBill(final String content) {
         this.content = content;
     }
 
-    /* (non-Javadoc)
-     * @see com.leokom.publicutility.bill.Bill#toPay()
-     */
     @Override
     public String toPay() {
         // technically jsoup can also send a request to the server
