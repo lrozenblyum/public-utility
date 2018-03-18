@@ -67,9 +67,12 @@ public final class ErcBillTest {
             return new TextOf(new ResourceOf(path)).asString();
         } catch (final IOException exception) {
             throw new IllegalStateException(
-                String.format("Failed to load",
-                path
-            ), exception);
+                String.format(
+                    "Failed to load",
+                    path
+                ),
+                exception
+            );
         }
     }
 }
