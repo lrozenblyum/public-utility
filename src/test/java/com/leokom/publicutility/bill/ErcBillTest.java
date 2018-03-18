@@ -22,27 +22,54 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
+ * Test Erc Bill.
  * @author Leonid Rozenblium (lrozenblyum@gmail.com)
  * @version $Id$
  * @since 0.0.1
- *
  */
-public class ErcBillTest {
-    @Test
-    public void singleFieldParsed() throws IOException {
-        String serverResponse = this.loadFile("SampleResponse.html");
+public final class ErcBillTest {
+    /**
+     * Response with the first value of 'toPay'.
+     */
+    private static final String FIRST_RESPONSE =
+        "SampleResponse.html";
+    /**
+     * Response with the second value of 'toPay'.
+     */
+    private static final String SECOND_RESPONSE =
+        "SampleResponseAnotherPayment.html";
 
-        Assert.assertEquals("10.18", new ErcBill(serverResponse).toPay());
+    /**
+     * Check that a single field (to pay) can be parsed.
+     */
+    @Test
+    public void singleFieldParsed() {
+        final String response = this.loadFile(FIRST_RESPONSE);
+        Assert.assertEquals("10.18", new ErcBill(response).toPay());
     }
 
+    /**
+     * Check that a single field (to pay) with another value can be parsed.
+     */
     @Test
-    public void singleFileParsedTriangulate() throws IOException {
-        String serverResponse = this.loadFile("SampleResponseAnotherPayment.html");
-
-        Assert.assertEquals("988.17", new ErcBill(serverResponse).toPay());
+    public void singleFileParsedTriangulate() {
+        final String response = this.loadFile(SECOND_RESPONSE);
+        Assert.assertEquals("988.17", new ErcBill(response).toPay());
     }
 
-    private String loadFile(String path) throws IOException {
-        return new TextOf(new ResourceOf(path)).asString();
+    /**
+     * Load a file from a given path accessible for the current class loader.
+     * @param path Path to the file
+     * @return File content
+     */
+    private String loadFile(final String path) {
+        try {
+            return new TextOf(new ResourceOf(path)).asString();
+        } catch (final IOException exception) {
+            throw new IllegalStateException(
+                String.format("Failed to load",
+                path
+            ), exception);
+        }
     }
 }
