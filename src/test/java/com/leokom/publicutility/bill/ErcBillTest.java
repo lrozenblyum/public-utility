@@ -18,7 +18,8 @@ package com.leokom.publicutility.bill;
 import java.io.IOException;
 import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
-import org.junit.Assert;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 /**
@@ -44,8 +45,11 @@ public final class ErcBillTest {
      */
     @Test
     public void singleFieldParsed() {
-        final String response = this.loadFile(FIRST_RESPONSE);
-        Assert.assertEquals("10.18", new ErcBill(response).toPay());
+        final String response = this.loadFile(ErcBillTest.FIRST_RESPONSE);
+        MatcherAssert.assertThat(
+            new ErcBill(response).toPay(),
+            CoreMatchers.equalTo("10.18")
+        );
     }
 
     /**
@@ -53,8 +57,11 @@ public final class ErcBillTest {
      */
     @Test
     public void singleFileParsedTriangulate() {
-        final String response = this.loadFile(SECOND_RESPONSE);
-        Assert.assertEquals("988.17", new ErcBill(response).toPay());
+        final String response = this.loadFile(ErcBillTest.SECOND_RESPONSE);
+        MatcherAssert.assertThat(
+            new ErcBill(response).toPay(),
+            CoreMatchers.equalTo("988.17")
+        );
     }
 
     /**
