@@ -30,6 +30,13 @@ import org.jsoup.nodes.Element;
  */
 public final class ErcBill implements Bill {
     /**
+     * Date formatter for Erc dates.
+     * The class is thread-safe and immutable.
+     */
+    private static final DateTimeFormatter DATE_FORMATTER =
+        DateTimeFormatter.ofPattern("dd.MM.yy");
+
+    /**
      * Response from the server containing bill data.
      */
     private final String content;
@@ -65,13 +72,17 @@ public final class ErcBill implements Bill {
             .map(Element::nextElementSibling)
             .map(Element::text)
             .findFirst()
-            .map(this::stringToDate)
+            .map(ErcBill::stringToDate)
             .orElseThrow(this::generateNotFoundException);
     }
-    
-    private LocalDate stringToDate( String date ) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy");
-        return LocalDate.parse(date, formatter);
+
+    /**
+     * Convert a given string to date based on current Erc date format.
+     * @param date Date in correct format
+     * @return Java8 date
+     */
+    private static LocalDate stringToDate(final String date) {
+        return LocalDate.parse(date, ErcBill.DATE_FORMATTER);
     }
 
     /**
