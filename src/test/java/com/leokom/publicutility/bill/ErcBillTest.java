@@ -47,9 +47,9 @@ public final class ErcBillTest {
      */
     @Test
     public void singleFieldParsed() {
-        final String response = this.loadFile(ErcBillTest.FIRST_RESPONSE);
+        ErcBill bill = this.loadBill(ErcBillTest.FIRST_RESPONSE);
         MatcherAssert.assertThat(
-            new ErcBill(response).toPay(),
+            bill.toPay(),
             CoreMatchers.equalTo("10.18")
         );
     }
@@ -59,20 +59,25 @@ public final class ErcBillTest {
      */
     @Test
     public void singleFileParsedTriangulate() {
-        final String response = this.loadFile(ErcBillTest.SECOND_RESPONSE);
+        ErcBill bill = this.loadBill(ErcBillTest.SECOND_RESPONSE);
         MatcherAssert.assertThat(
-            new ErcBill(response).toPay(),
+            bill.toPay(),
             CoreMatchers.equalTo("988.17")
         );
     }
     
     @Test
-    public void billDateParsed() {
-        final String response = this.loadFile(ErcBillTest.FIRST_RESPONSE);
+    public void dateParsed() {
+        ErcBill bill = this.loadBill(ErcBillTest.FIRST_RESPONSE);
         MatcherAssert.assertThat(
-            new ErcBill(response).date(),
+            bill.date(),
             CoreMatchers.equalTo(LocalDate.of(2018, 1, 1))
         );
+    }
+    
+    private ErcBill loadBill(String responseFile) {
+        final String response = this.loadFile(responseFile);
+        return new ErcBill(response);
     }
 
     /**
