@@ -15,6 +15,8 @@
 
 package com.leokom.publicutility.bill;
 
+import java.time.LocalDate;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -61,5 +63,9 @@ public final class ErcBill implements Bill {
         return new IllegalArgumentException(
             String.format(" Failed to find what to pay from %s", this.content)
         );
+    }
+
+    public LocalDate date() {
+        return LocalDate.of(2018, 1, 1);
     }
 }

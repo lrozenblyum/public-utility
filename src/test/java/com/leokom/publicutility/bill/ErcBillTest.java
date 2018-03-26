@@ -16,6 +16,8 @@
 package com.leokom.publicutility.bill;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.CoreMatchers;
@@ -61,6 +63,15 @@ public final class ErcBillTest {
         MatcherAssert.assertThat(
             new ErcBill(response).toPay(),
             CoreMatchers.equalTo("988.17")
+        );
+    }
+    
+    @Test
+    public void billDateParsed() {
+        final String response = this.loadFile(ErcBillTest.FIRST_RESPONSE);
+        MatcherAssert.assertThat(
+            new ErcBill(response).date(),
+            CoreMatchers.equalTo(LocalDate.of(2018, 1, 1))
         );
     }
 
