@@ -15,6 +15,8 @@
 
 package com.leokom.publicutility.bill;
 
+import java.time.LocalDate;
+
 /**
  * Bill for public utility service.
  * @author Leonid Rozenblium (lrozenblyum@gmail.com)
@@ -29,5 +31,12 @@ public interface Bill {
      * @return Amount of money to pay
      */
     String toPay();
+
+    /**
+     * What's the date for which the bill is actual.
+     *
+     * @return Date of the bill.
+     */
+    LocalDate date();
 
 }

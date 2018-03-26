@@ -17,7 +17,6 @@ package com.leokom.publicutility.bill;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
 import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
 import org.hamcrest.CoreMatchers;
@@ -31,6 +30,11 @@ import org.junit.Test;
  * @since 0.0.1
  */
 public final class ErcBillTest {
+    /**
+     * Date in the first response file.
+     */
+    private static final LocalDate HARD_CODED_DATE =
+        LocalDate.of(2018, 1, 1);
     /**
      * Response with the first value of 'toPay'.
      */
@@ -47,7 +51,7 @@ public final class ErcBillTest {
      */
     @Test
     public void singleFieldParsed() {
-        ErcBill bill = this.loadBill(ErcBillTest.FIRST_RESPONSE);
+        final Bill bill = this.loadBill(ErcBillTest.FIRST_RESPONSE);
         MatcherAssert.assertThat(
             bill.toPay(),
             CoreMatchers.equalTo("10.18")
@@ -59,24 +63,32 @@ public final class ErcBillTest {
      */
     @Test
     public void singleFileParsedTriangulate() {
-        ErcBill bill = this.loadBill(ErcBillTest.SECOND_RESPONSE);
+        final Bill bill = this.loadBill(ErcBillTest.SECOND_RESPONSE);
         MatcherAssert.assertThat(
             bill.toPay(),
             CoreMatchers.equalTo("988.17")
         );
     }
-    
+
+    /**
+     * Check that date can be parsed.
+     */
     @Test
     public void dateParsed() {
-        ErcBill bill = this.loadBill(ErcBillTest.FIRST_RESPONSE);
+        final Bill bill = this.loadBill(ErcBillTest.FIRST_RESPONSE);
         MatcherAssert.assertThat(
             bill.date(),
-            CoreMatchers.equalTo(LocalDate.of(2018, 1, 1))
+            CoreMatchers.equalTo(ErcBillTest.HARD_CODED_DATE)
         );
     }
-    
-    private ErcBill loadBill(String responseFile) {
-        final String response = this.loadFile(responseFile);
+
+    /**
+     * Load the bill from the file.
+     * @param path Path to the file to be loaded
+     * @return Bill.
+     */
+    private Bill loadBill(final String path) {
+        final String response = this.loadFile(path);
         return new ErcBill(response);
     }
 

@@ -16,7 +16,6 @@
 package com.leokom.publicutility.bill;
 
 import java.time.LocalDate;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,6 +28,10 @@ import org.jsoup.nodes.Element;
  * @since 0.0.1
  */
 public final class ErcBill implements Bill {
+    /**
+     * Date of the bill.
+     */
+    private static final LocalDate HARD_CODED_DATE = LocalDate.of(2018, 1, 1);
     /**
      * Response from the server containing bill data.
      */
@@ -55,6 +58,11 @@ public final class ErcBill implements Bill {
             .orElseThrow(this::generateNotFoundException);
     }
 
+    @Override
+    public LocalDate date() {
+        return ErcBill.HARD_CODED_DATE;
+    }
+
     /**
      * Generate exception in case the desired element not found.
      * @return Instance of an exception
@@ -63,9 +71,5 @@ public final class ErcBill implements Bill {
         return new IllegalArgumentException(
             String.format(" Failed to find what to pay from %s", this.content)
         );
-    }
-
-    public LocalDate date() {
-        return LocalDate.of(2018, 1, 1);
     }
 }
