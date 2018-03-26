@@ -16,6 +16,7 @@
 package com.leokom.publicutility.bill;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -28,10 +29,6 @@ import org.jsoup.nodes.Element;
  * @since 0.0.1
  */
 public final class ErcBill implements Bill {
-    /**
-     * Date of the bill.
-     */
-    private static final LocalDate HARD_CODED_DATE = LocalDate.of(2018, 1, 1);
     /**
      * Response from the server containing bill data.
      */
@@ -60,7 +57,21 @@ public final class ErcBill implements Bill {
 
     @Override
     public LocalDate date() {
-        return ErcBill.HARD_CODED_DATE;
+        final Document response = Jsoup.parse(this.content);
+        return
+            response.getElementsContainingText("Станом на")
+            .stream()
+            .filter(element -> element.is("TD"))
+            .map(Element::nextElementSibling)
+            .map(Element::text)
+            .findFirst()
+            .map(this::stringToDate)
+            .orElseThrow(this::generateNotFoundException);
+    }
+    
+    private LocalDate stringToDate( String date ) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy");
+        return LocalDate.parse(date, formatter);
     }
 
     /**
