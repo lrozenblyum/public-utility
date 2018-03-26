@@ -35,6 +35,9 @@ public final class ErcBillTest {
      */
     private static final LocalDate HARD_CODED_DATE =
         LocalDate.of(2018, 1, 1);
+    
+    private static final LocalDate MARCH =
+            LocalDate.of(2018, 3, 1);
     /**
      * Response with the first value of 'toPay'.
      */
@@ -45,6 +48,9 @@ public final class ErcBillTest {
      */
     private static final String SECOND_RESPONSE =
         "SampleResponseAnotherPayment.html";
+    
+    private static final String RESPONSE_MARCH =
+            "ResponseMarch2018.html";
 
     /**
      * Check that a single field (to pay) can be parsed.
@@ -79,6 +85,15 @@ public final class ErcBillTest {
         MatcherAssert.assertThat(
             bill.date(),
             CoreMatchers.equalTo(ErcBillTest.HARD_CODED_DATE)
+        );
+    }
+    
+    @Test
+    public void dateParsedTriangulate() {
+        final Bill bill = this.loadBill(ErcBillTest.RESPONSE_MARCH);
+        MatcherAssert.assertThat(
+            bill.date(),
+            CoreMatchers.equalTo(ErcBillTest.MARCH)
         );
     }
 
