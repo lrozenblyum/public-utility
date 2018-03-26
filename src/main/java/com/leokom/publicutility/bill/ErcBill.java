@@ -52,28 +52,30 @@ public final class ErcBill implements Bill {
     @Override
     public String toPay() {
         final Document response = Jsoup.parse(this.content);
-        return
-            response.getElementsContainingText("Сума до оплати")
-            .stream()
-            .filter(element -> element.is("TD"))
-            .map(Element::nextElementSibling)
-            .map(Element::text)
-            .findFirst()
-            .orElseThrow(this::generateNotFoundException);
+        return this.loadCell(response, "Сума до оплати");
     }
 
     @Override
     public LocalDate date() {
         final Document response = Jsoup.parse(this.content);
+        return ErcBill.stringToDate(this.loadCell(response, "Станом на"));
+    }
+
+    /**
+     * Load cell value from a given response.
+     * @param response Response from the server
+     * @param name Cell name
+     * @return Cell value
+     */
+    private String loadCell(final Document response, final String name) {
         return
-            response.getElementsContainingText("Станом на")
+            response.getElementsContainingText(name)
             .stream()
             .filter(element -> element.is("TD"))
             .map(Element::nextElementSibling)
             .map(Element::text)
             .findFirst()
-            .map(ErcBill::stringToDate)
-            .orElseThrow(this::generateNotFoundException);
+            .orElseThrow(() -> this.generateNotFoundException(name));
     }
 
     /**
@@ -87,11 +89,13 @@ public final class ErcBill implements Bill {
 
     /**
      * Generate exception in case the desired element not found.
+     * @param cell Cell name which value couldn't be found.
      * @return Instance of an exception
      */
-    private IllegalArgumentException generateNotFoundException() {
+    private IllegalArgumentException generateNotFoundException(
+        final String cell) {
         return new IllegalArgumentException(
-            String.format(" Failed to find what to pay from %s", this.content)
+            String.format(" Failed to find %s from %s", cell, this.content)
         );
     }
 }
