@@ -58,7 +58,9 @@ public final class ErcBill implements Bill {
     @Override
     public LocalDate date() {
         final Document response = Jsoup.parse(this.content);
-        return ErcBill.stringToDate(this.loadCell(response, "Станом на"));
+        return ErcBill.stringToDate(
+            this.loadCell(response, "Станом на")
+        );
     }
 
     /**
