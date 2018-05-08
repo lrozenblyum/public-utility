@@ -25,6 +25,13 @@
 		      <scope>test</scope>
 		</dependency>
 
+        <!-- OO HTTP Client-->
+		<dependency>
+			<groupId>com.jcabi</groupId>
+			<artifactId>jcabi-http</artifactId>
+			<version>1.17.2</version>
+		</dependency>
+
 		<!-- OO replacement for guava & Apache Commons -->
 		<dependency>
 			<groupId>org.cactoos</groupId>
