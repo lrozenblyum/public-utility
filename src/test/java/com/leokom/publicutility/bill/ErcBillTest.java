@@ -16,6 +16,7 @@
 package com.leokom.publicutility.bill;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
@@ -64,7 +65,7 @@ public final class ErcBillTest {
         final Bill bill = this.loadBill(ErcBillTest.FIRST_RESPONSE);
         MatcherAssert.assertThat(
             bill.toPay(),
-            CoreMatchers.equalTo("10.18")
+            CoreMatchers.equalTo(new BigDecimal("10.18"))
         );
     }
 
@@ -76,7 +77,7 @@ public final class ErcBillTest {
         final Bill bill = this.loadBill(ErcBillTest.SECOND_RESPONSE);
         MatcherAssert.assertThat(
             bill.toPay(),
-            CoreMatchers.equalTo("988.17")
+            CoreMatchers.equalTo(new BigDecimal("988.17"))
         );
     }
 

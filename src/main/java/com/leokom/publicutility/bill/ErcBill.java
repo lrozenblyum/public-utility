@@ -15,6 +15,7 @@
 
 package com.leokom.publicutility.bill;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import org.jsoup.Jsoup;
@@ -48,9 +49,11 @@ public final class ErcBill implements Bill {
     }
 
     @Override
-    public String toPay() {
+    public BigDecimal toPay() {
         final Document response = Jsoup.parse(this.content);
-        return this.loadCell(response, "Сума до оплати");
+        return new BigDecimal(
+            this.loadCell(response, "Сума до оплати")
+        );
     }
 
     @Override

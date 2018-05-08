@@ -15,6 +15,7 @@
 
 package com.leokom.publicutility.bill;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -28,7 +29,7 @@ public interface Bill {
      *
      * @return Amount of money to pay
      */
-    String toPay();
+    BigDecimal toPay();
 
     /**
      * What's the date for which the bill is actual.
