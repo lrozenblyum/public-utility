@@ -6,6 +6,7 @@ import com.jcabi.http.Request;
 import com.jcabi.http.request.JdkRequest;
 
 public class ErcWebSite {
+    private static final int ID_OF_TEPLOKOMUNENERGO = 37;
     private int account;
 
     public ErcWebSite(int account) {
@@ -16,7 +17,7 @@ public class ErcWebSite {
         return new JdkRequest("http://erc.chv.ua/borg/index.php").method(Request.POST)
                 .body()
                 .formParam("osr", String.valueOf(account))
-                .formParam("org", 37)
+                .formParam("org", ID_OF_TEPLOKOMUNENERGO)
                 .back()
                 .fetch()
                 .body();
