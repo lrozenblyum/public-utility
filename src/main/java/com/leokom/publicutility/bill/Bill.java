@@ -19,8 +19,6 @@ import java.time.LocalDate;
 
 /**
  * Bill for public utility service.
- * @author Leonid Rozenblium (lrozenblyum@gmail.com)
- * @version $Id$
  * @since 0.0.1
  */
 public interface Bill {

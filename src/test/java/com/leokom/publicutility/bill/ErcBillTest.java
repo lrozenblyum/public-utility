@@ -25,8 +25,6 @@ import org.junit.Test;
 
 /**
  * Test Erc Bill.
- * @author Leonid Rozenblium (lrozenblyum@gmail.com)
- * @version $Id$
  * @since 0.0.1
  */
 public final class ErcBillTest {
