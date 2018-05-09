@@ -65,7 +65,7 @@ public final class ErcBillTest {
     @Test
     public void realBillCanBeParsed() throws IOException {
         MatcherAssert.assertThat(
-            new ErcBill(new ErcWebSite(21800)).toPay(),
+            new ErcBill(new ErcWebPage(21800)).toPay(),
             CoreMatchers.is(CoreMatchers.notNullValue())
         );
     }

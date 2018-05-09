@@ -1,17 +1,20 @@
 package com.leokom.publicutility.bill;
 
 import java.io.IOException;
-
 import org.cactoos.Text;
-
 import com.jcabi.http.Request;
 import com.jcabi.http.request.JdkRequest;
 
-public class ErcWebSite implements Text {
+/**
+ * Represent real webpage from the erc website
+ * @author leokom
+ *
+ */
+public class ErcWebPage implements Text {
     private static final int ID_OF_TEPLOKOMUNENERGO = 37;
     private int account;
 
-    public ErcWebSite(int account) {
+    public ErcWebPage(int account) {
         this.account=account;
     }
 
