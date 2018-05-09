@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import org.cactoos.Text;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -44,8 +43,8 @@ public final class ErcBill implements Bill {
     private final String content;
 
     /**
-     * Create a bill based on the text with server response
-     * @param text bill content source
+     * Create a bill based on the text with server response.
+     * @param text Bill content source
      * @throws IOException in case the text cannot be read
      */
     public ErcBill(final Text text) throws IOException {
