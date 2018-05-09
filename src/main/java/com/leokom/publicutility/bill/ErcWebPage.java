@@ -15,41 +15,44 @@
 
 package com.leokom.publicutility.bill;
 
-import java.io.IOException;
-import org.cactoos.Text;
 import com.jcabi.http.Request;
 import com.jcabi.http.request.JdkRequest;
+import java.io.IOException;
+import org.cactoos.Text;
 
 /**
- * Represent real webpage from the erc website
- * @author leokom
- *
+ * Represent real webpage from the erc website.
+ * @since 0.0.1
  */
-public class ErcWebPage implements Text {
-    private static final int ID_OF_TEPLOKOMUNENERGO = 37;
-    private int account;
+public final class ErcWebPage implements Text {
+    /**
+     * Id of the warm supplier provided (just for demo purposes).
+     */
+    private static final int DEMO_SUPPLIER_ID = 37;
 
     /**
-     * Create Erc Web page for the given account in TeploKomunEnergo
+     * Account number in the warm supplier.
+     */
+    private final int account;
+
+    /**
+     * Erc Web page for the given account in TeploKomunEnergo.
      * @param account Account number in TeploKomunEnergo
      */
-    public ErcWebPage(int account) {
-        this.account=account;
+    public ErcWebPage(final int account) {
+        this.account = account;
     }
 
-    /**
-     * Load the Web page content for the account
-     * @throws IOException if the website cannot be loaded
-     */
     @Override
     public String asString() throws IOException {
-        return new JdkRequest("http://erc.chv.ua/borg/index.php").method(Request.POST)
-                .body()
-                .formParam("osr", String.valueOf(account))
-                .formParam("org", ID_OF_TEPLOKOMUNENERGO)
-                .back()
-                .fetch()
-                .body();
+        return new JdkRequest("http://erc.chv.ua/borg/index.php")
+            .method(Request.POST)
+            .body()
+            .formParam("osr", String.valueOf(this.account))
+            .formParam("org", ErcWebPage.DEMO_SUPPLIER_ID)
+            .back()
+            .fetch()
+            .body();
     }
 
 }
