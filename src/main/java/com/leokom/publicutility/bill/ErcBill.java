@@ -15,9 +15,12 @@
 
 package com.leokom.publicutility.bill;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import org.cactoos.Text;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -39,6 +42,15 @@ public final class ErcBill implements Bill {
      * Response from the server containing bill data.
      */
     private final String content;
+
+    /**
+     * Create a bill based on the text with server response
+     * @param text bill content source
+     * @throws IOException in case the text cannot be read
+     */
+    public ErcBill(final Text text) throws IOException {
+        this(text.asString());
+    }
 
     /**
      * Create a bill based on server response containing needed information.

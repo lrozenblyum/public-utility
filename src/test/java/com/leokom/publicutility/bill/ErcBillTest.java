@@ -56,6 +56,19 @@ public final class ErcBillTest {
      */
     private static final String RESPONSE_MARCH =
         "ResponseMarch2018.html";
+    
+    /**
+     * Check that a real bill can be parsed.
+     * Technically this is some kind of 'IT' tests
+     * @throws IOException
+     */
+    @Test
+    public void realBillCanBeParsed() throws IOException {
+        MatcherAssert.assertThat(
+            new ErcBill(new ErcWebSite(21800)).toPay(),
+            CoreMatchers.is(CoreMatchers.notNullValue())
+        );
+    }
 
     /**
      * Check that a single field (to pay) can be parsed.
