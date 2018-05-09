@@ -7,6 +7,12 @@ import java.io.IOException;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
+/**
+ * Test the website.
+ * Technically it should be some kind of an Integrational Test (since it can be red while the feature is working fine).
+ * @author leokom
+ *
+ */
 public class ErcWebSiteTest {
     @Test
     public void basicWebSite() throws IOException {
