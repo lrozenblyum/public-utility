@@ -30,6 +30,11 @@ import org.junit.Test;
  */
 public final class ErcBillTest {
     /**
+     * Id of a valid account inside the supported supplier.
+     */
+    private static final int VALID_ACCOUNT_ID = 21800;
+
+    /**
      * Date in the first response file.
      */
     private static final LocalDate HARD_CODED_DATE =
@@ -56,16 +61,18 @@ public final class ErcBillTest {
      */
     private static final String RESPONSE_MARCH =
         "ResponseMarch2018.html";
-    
+
     /**
      * Check that a real bill can be parsed.
      * Technically this is some kind of 'IT' tests
-     * @throws IOException
+     * @throws IOException in case the web page is not reachable
      */
     @Test
     public void realBillCanBeParsed() throws IOException {
         MatcherAssert.assertThat(
-            new ErcBill(new ErcWebPage(21800)).toPay(),
+            new ErcBill(
+                new ErcWebPage(ErcBillTest.VALID_ACCOUNT_ID)
+            ).toPay(),
             CoreMatchers.is(CoreMatchers.notNullValue())
         );
     }
