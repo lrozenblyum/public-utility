@@ -17,11 +17,11 @@ public class ErcWebSiteTest {
     @Test
     public void basicWebSite() throws IOException {
         int account=21820;
-        assertThat(new ErcWebSite(account).load(), CoreMatchers.containsString("21820"));
+        assertThat(new ErcWebSite(account).asString(), CoreMatchers.containsString("21820"));
     }
     
     @Test
     public void webSiteContainsCorrectAddress() throws IOException {
-        assertThat(new ErcWebSite(21805).load(), CoreMatchers.containsString("Миколайчука Iвана"));
+        assertThat(new ErcWebSite(21805).asString(), CoreMatchers.containsString("Миколайчука Iвана"));
     }
 }
