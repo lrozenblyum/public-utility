@@ -28,6 +28,23 @@ import org.junit.Test;
  */
 public final class ErcWebPageTest {
     /**
+     * Number of the first account to test.
+     */
+    private static final int FIRST_ACCOUNT = 21820;
+    /**
+     * Content to expect in the first account.
+     */
+    private static final String FIRST_CONTENT = "21820";
+    /**
+     * Number of the second account to test.
+     */
+    private static final int SECOND_ACCOUNT = 21805;
+    /**
+     * Content to expect in the second acount.
+     */
+    private static final String SECOND_CONTENT = "Миколайчука Iвана";
+
+    /**
      * Load the web-site and verify response
      *  matching the account id in the request.
      * @throws IOException in case the web site is not reachable
@@ -35,8 +52,8 @@ public final class ErcWebPageTest {
     @Test
     public void basicWebSite() throws IOException {
         MatcherAssert.assertThat(
-            new ErcWebPage(21820).asString(),
-            CoreMatchers.containsString("21820")
+            new ErcWebPage(ErcWebPageTest.FIRST_ACCOUNT).asString(),
+            CoreMatchers.containsString(ErcWebPageTest.FIRST_CONTENT)
         );
     }
 
@@ -47,8 +64,8 @@ public final class ErcWebPageTest {
     @Test
     public void webSiteContainsCorrectAddress() throws IOException {
         MatcherAssert.assertThat(
-            new ErcWebPage(21805).asString(), 
-            CoreMatchers.containsString("Миколайчука Iвана")
+            new ErcWebPage(ErcWebPageTest.SECOND_ACCOUNT).asString(),
+            CoreMatchers.containsString(ErcWebPageTest.SECOND_CONTENT)
         );
     }
 }
